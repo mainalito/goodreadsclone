@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"></html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Live Search</title>
+    <link rel="stylesheet" th:href="@{style.css}" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+      integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" th:href="@{/search}" href="#">Search your 📚</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+      
+          <li class="nav-item">
+            <a class="nav-link" href="#">View your 📚</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Pricing</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <div class="wrapper">
+      <div class="search-input" method="get" th:attr="action=@{/}" >
+        <form class="mini">
+          <input type="text" name="q" autocomplete="off"  placeholder="search a book..." id="" />
+          <button type="submit" class="icon">
+            <i class="fas fa-search"></i>
+          </button>
+        </form>
+        <div class="autocom-box" >
+          <!-- <li th:text="${book.title}"></li>
+          <img th:src="${book.cover_i}" alt="" srcset="" /> -->
+        </div>
+      </div>
+    </div>
+     <script type="text/javascript" th:inline="javascript">
+      /*<![CDATA[*/
+      const books = /*[[${books}]]*/ "";
+      console.log(books);
+      const searchWrapper = document.querySelector(".search-input");
+      //   const inputBox = document.querySelector("input");
+      const suggBox = document.querySelector(".autocom-box");
+      
+      let bookMap=books.map((book) => {
+          return `
+          <li>
+            <div class="results">
+                <a href="/book/${book.key}" > ${book.title} ${book.author_name} </a>  
+            <img src=${book.cover_i} alt=${book.title} srcset="">
+            </div>
+            </li>
+          `;
+        });
+        console.log(bookMap);
+      searchWrapper.classList.add("active");
+      suggBox.innerHTML = bookMap.join('');
+      
+      let allList = suggBox.querySelectorAll("li");
+
+      for (let i = 0; i < allList.length; i++) {
+        allList[i].setAttribute("onclick", "select(this)");
+      }
+      function select(element) {
+        let selectUserData = element.textContent;
+        inputBox.value = selectUserData; //pass the input data to textfield
+      }
+      //capture users data
+      //   inputBox.onkeyup = (e) => {
+      //     let value = e.target.value;
+      //     if (value) {
+      //       fetch("http://localhost:8080/search?query=" + value)
+      //         .then((response) => response.json())
+      //         .then((data) => {
+      //           let userMap = data.map((users) => {
+      //             return `<li>${users.firstName} ${users.lastName}</li>
+      //             `;
+      //           });
+      //           let allList = suggBox.querySelectorAll("li");
+
+      //           for (let i = 0; i < allList.length; i++) {
+      //             allList[i].setAttribute("onclick", "select(this)");
+      //           }
+      //         });
+      //     } else {
+      //       searchWrapper.classList.remove("active");
+      //     }
+      //   };
+      /*]]>*/
+    </script>
+  
+  </body>
+</html>

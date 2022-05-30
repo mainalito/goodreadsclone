@@ -1,0 +1,95 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;1,200&display=swap');
+*{
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+body{
+    background-color: whitesmoke;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+
+
+}
+.wrapper{
+    max-width: 600px;
+    margin-right: 20px;
+
+}
+ .search-input{
+     padding: 0.5rem 1rem;
+    background-color: white;
+    width: 100%;
+    border-radius: 5px;
+    box-shadow: 0px 1px 5px 3px rgba(0, 0, 0, 0.12) ;
+
+}
+button{
+    background-color: transparent;
+    outline: none;
+    border: none;
+}
+.search-input input{
+    height: 45px;
+    width: 100%;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    padding: 0 40px 0 20px;
+    font-size: 16px;
+    box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.1) ;
+}
+.search-input.active .autocom-box{
+    padding: 10px 10px;
+    opacity: 1;
+    pointer-events: auto;
+}
+.search-input.active .autocom-box li{
+    display: block;
+}
+.autocom-box{
+    padding: 0;
+    max-height: 280px;
+    overflow-y: auto;
+    opacity: 0;
+    pointer-events: none;
+}
+.autocom-box li{
+    list-style-type: none;
+    padding: 8px 12px;
+    width: 100%;
+    cursor: default;
+    border-radius: 3px;
+    display: none;
+}
+.autocom-box li:hover{
+    background-color: #efefef;
+}
+ .mini{
+    display: flex;
+    align-items: center;
+}
+.mini .icon{
+    margin-left: 10px;
+    font-size: 20px;
+    color: #644bff;
+    cursor: pointer;
+}
+.search-input.active .autocom-box li .results{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+}
+.search-input.active .autocom-box li img{
+    width: 75px;
+    height: 100px;
+}
+.search-input.active .autocom-box li .results a{
+    text-decoration: none;
+    color: black;
+    
+}

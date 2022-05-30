@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+</head>
+<body>
+ 
+  <div class="container">   
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" th:href="@{/search}" href="#">Search your 📚</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+      
+          <li class="nav-item">
+            <a class="nav-link" href="#">View your 📚</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Pricing</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <div class="card mt-3 " style="max-width: 1000px;">
+        <div class="row g-0">
+          <div class="col-md-4">
+            <img th:src="${coverImage}" class="img-fluid rounded-start" alt="...">
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <h5 class="card-title" th:text="${book.title}">Card title</h5>
+              <p class="card-text" th:text="${book?.description?.value}">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+              <p class="card-text"><small class="text-muted" th:text="${book.subjects}">Last updated 3 mins ago</small></p>
+              <form action="" th:attr="action=@{/addUserBook}" method="post">
+                <input type="hidden" name="bookId" th:value="${book.key}">
+                      <div class="form-group">
+                        <label for="startDate">Start Date</label>
+                        <input type="date" name = "startDate"class="form-control" th:value="${userBooks.startDate}"id="exampleFormControlInput1" placeholder="name@example.com">
+                      </div>
+                      <div class="form-group">
+                        <label for="endDate">End Date</label>
+                        <input type="date" class="form-control" th:value="${userBooks.endDate}" name="endDate" placeholder="name@example.com">
+                      </div>
+                      <div class="form-group">
+                        <label for="readingStatus">Reading Status</label>
+                        <select class="form-control" th:field="*{userBooks.readingStatus}" name="readingStatus">
+                          <option selected value="0">Status</option>
+                          <option value="reading">Currently reading</option>
+                          <option value="finished">Finished</option>
+                          <option value="dnf">Did not finish</option>
+                        </select>
+                      </div>
+                      <div class="form-group">
+                        <label for="rating">Rating</label>
+                        <select  class="form-control"  th:field="*{userBooks.rating}" name="rating">
+                          <option selected value="0">Select Rating</option>
+                          <option value="1">&#9733;</option>
+                          <option value="2">&#9733;&#9733;</option>
+                          <option value="3">&#9733;&#9733;&#9733;</option>
+                          <option value="4">&#9733;&#9733;&#9733;&#9733;</option>
+                          <option value="5">&#9733;&#9733;&#9733;&#9733;&#9733;</option>
+
+                        </select>
+                      </div>
+                      <button type="submit" class="btn btn-primary">Submit</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+</body>
+</html>
