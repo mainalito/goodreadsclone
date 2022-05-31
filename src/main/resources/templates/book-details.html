@@ -38,10 +38,11 @@
               <h5 class="card-title" th:text="${book.title}">Card title</h5>
               <p class="card-text" th:text="${book?.description?.value}">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
               <p class="card-text"><small class="text-muted" th:text="${book.subjects}">Last updated 3 mins ago</small></p>
-              <form action="" th:attr="action=@{/addUserBook}" method="post">
+              <form th:if="${loginId}" action="" th:attr="action=@{/addUserBook}" method="post" th:each="userBooks : ${userBooks}">
                 <input type="hidden" name="bookId" th:value="${book.key}">
+                <input type="hidden" th:value="${_csrf.token}" th:name="${_csrf.parameterName}">
                       <div class="form-group">
-                        <label for="startDate">Start Date</label>
+                        <label for="startDate">Start Date</label> 
                         <input type="date" name = "startDate"class="form-control" th:value="${userBooks.startDate}"id="exampleFormControlInput1" placeholder="name@example.com">
                       </div>
                       <div class="form-group">
@@ -50,7 +51,7 @@
                       </div>
                       <div class="form-group">
                         <label for="readingStatus">Reading Status</label>
-                        <select class="form-control" th:field="*{userBooks.readingStatus}" name="readingStatus">
+                        <select class="form-control" th:field="${userBooks.readingStatus}" name="readingStatus">
                           <option selected value="0">Status</option>
                           <option value="reading">Currently reading</option>
                           <option value="finished">Finished</option>
@@ -59,7 +60,7 @@
                       </div>
                       <div class="form-group">
                         <label for="rating">Rating</label>
-                        <select  class="form-control"  th:field="*{userBooks.rating}" name="rating">
+                        <select  class="form-control"  th:field="${userBooks.rating}" name="rating">
                           <option selected value="0">Select Rating</option>
                           <option value="1">&#9733;</option>
                           <option value="2">&#9733;&#9733;</option>
