@@ -52,7 +52,7 @@ public class BookController {
             }
             
                 String userId = principal.getAttribute("login");
-    
+                bookDetails.setCoverUrl(coverImageUrl);
                 System.out.println(userId + "======" + bookId );
                 Optional<Book> userBook = bookRepository.findById(new UserBookIds(bookId,userId));
                 if (userBook.isPresent()) {

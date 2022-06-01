@@ -19,5 +19,167 @@
   <body>
     <h1>Login</h1>
     <div>With Github: <a href="/oauth2/authorization/github">click here</a></div>
+   <style th:inline="css">
+    @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;1,200&display=swap");
+    * {
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      background-color: whitesmoke;
+    }
+    .wrapper {
+      max-width: 600px;
+      margin-right: 20px;
+    }
+    .search-input {
+      padding: 0.5rem 1rem;
+      background-color: white;
+      width: 100%;
+      border-radius: 5px;
+      box-shadow: 0px 1px 5px 3px rgba(0, 0, 0, 0.12);
+    }
+    button {
+      background-color: transparent;
+      outline: none;
+      border: none;
+    }
+    .search-input input {
+      height: 45px;
+      width: 100%;
+      outline: none;
+      border: none;
+      border-radius: 5px;
+      padding: 0 40px 0 20px;
+      font-size: 16px;
+      box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.1);
+    }
+    .search-input.active .autocom-box {
+      padding: 10px 10px;
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .search-input.active .autocom-box li {
+      display: block;
+    }
+    .autocom-box {
+      padding: 0;
+      max-height: 280px;
+      overflow-y: auto;
+      opacity: 0;
+      pointer-events: none;
+    }
+    .autocom-box li {
+      list-style-type: none;
+      padding: 8px 12px;
+      width: 100%;
+      cursor: default;
+      border-radius: 3px;
+      display: none;
+    }
+    .autocom-box li:hover {
+      background-color: #efefef;
+    }
+    .mini {
+      display: flex;
+      align-items: center;
+    }
+    .mini .icon {
+      margin-left: 10px;
+      font-size: 20px;
+      color: #644bff;
+      cursor: pointer;
+    }
+    .search-input.active .autocom-box li .results {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .search-input.active .autocom-box li img {
+      width: 75px;
+      height: 100px;
+    }
+    .search-input.active .autocom-box li .results a {
+      text-decoration: none;
+      color: black;
+    }
+  </style>
+  
+    <div class="wrapper">
+      <div class="search-input" method="get" th:attr="action=@{/search}">
+        <form class="mini">
+          <input
+            type="text"
+            name="q"
+            autocomplete="off"
+            placeholder="search a book..."
+            id=""
+          />
+          <button type="submit" class="icon">
+            <i class="fas fa-search"></i>
+          </button>
+        </form>
+        <div class="autocom-box">
+          <!-- <li th:text="${book.title}"></li>
+          <img th:src="${book.cover_i}" alt="" srcset="" /> -->
+        </div>
+      </div>
+    </div>
+    <script type="text/javascript" th:inline="javascript">
+      /*<![CDATA[*/
+      const books = /*[[${books}]]*/ "";
+      console.log(books);
+      const searchWrapper = document.querySelector(".search-input");
+      //   const inputBox = document.querySelector("input");
+      const suggBox = document.querySelector(".autocom-box");
+
+      let bookMap = books.map((book) => {
+        return `
+          <li>
+            <div class="results">
+                <a href="/book/${book.key}" > ${book.title} ${book.author_name} </a>  
+            <img src=${book.cover_i} alt=${book.title} srcset="">
+            </div>
+            </li>
+          `;
+      });
+      console.log(bookMap);
+      searchWrapper.classList.add("active");
+      suggBox.innerHTML = bookMap.join("");
+
+      let allList = suggBox.querySelectorAll("li");
+
+      for (let i = 0; i < allList.length; i++) {
+        allList[i].setAttribute("onclick", "select(this)");
+      }
+      function select(element) {
+        let selectUserData = element.textContent;
+        inputBox.value = selectUserData; //pass the input data to textfield
+      }
+      //capture users data
+      //   inputBox.onkeyup = (e) => {
+      //     let value = e.target.value;
+      //     if (value) {
+      //       fetch("http://localhost:8080/search?query=" + value)
+      //         .then((response) => response.json())
+      //         .then((data) => {
+      //           let userMap = data.map((users) => {
+      //             return `<li>${users.firstName} ${users.lastName}</li>
+      //             `;
+      //           });
+      //           let allList = suggBox.querySelectorAll("li");
+
+      //           for (let i = 0; i < allList.length; i++) {
+      //             allList[i].setAttribute("onclick", "select(this)");
+      //           }
+      //         });
+      //     } else {
+      //       searchWrapper.classList.remove("active");
+      //     }
+      //   };
+      /*]]>*/
+    </script>
   </body>
 </html>

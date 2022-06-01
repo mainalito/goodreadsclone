@@ -36,8 +36,8 @@ public class UserBookController {
         String rating = formData.getFirst("rating");
         String readingStatus = formData.getFirst("readingStatus");
         String bookId = formData.getFirst("bookId").replace("/works/", "");
-        
-        
+        String title = formData.getFirst("bookName");
+        String coverUrl = formData.getFirst("coverImage");
         
         book.setStartDate(LocalDate.parse(startDate));
         book.setEndDate(LocalDate.parse(endDate));
@@ -45,6 +45,10 @@ public class UserBookController {
         book.setReadingStatus(readingStatus);
         book.setBookId(bookId);
         book.setUserId(userId);
+        book.setBookName(title);
+        book.setCoverUrl(coverUrl);
+        System.out.println(coverUrl);
+        
         
         
 

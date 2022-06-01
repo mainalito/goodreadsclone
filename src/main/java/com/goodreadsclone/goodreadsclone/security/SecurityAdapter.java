@@ -21,7 +21,7 @@ public void configure(WebSecurity web) throws Exception{
        // @formatter:off
        http
        .authorizeRequests(a -> a
-           .antMatchers("/","/webjars/**")
+           .antMatchers("/","/webjars/**","/book/**")
            
            .permitAll()
            .anyRequest().authenticated()

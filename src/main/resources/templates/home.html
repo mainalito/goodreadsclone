@@ -1,12 +1,148 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Book Tracker</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     
-</body>
+    
+  </head>
+  <body>
+    <style th:inline="css">
+      @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;1,200&display=swap");
+      * {
+        box-sizing: border-box;
+        padding: 0;
+        margin: 0;
+      }
+      body {
+        margin: 0;
+        font-family: "Poppins", sans-serif;
+
+      }
+      main {
+        display: flex;
+        flex-wrap: wrap;
+      }
+
+      .movie {
+        width: 350px;
+      }
+      .movie .image img {
+        width: 150px;
+        height: 200px;
+      }
+      .movie {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .movie-info {
+        margin-left: 1rem;
+        padding: 1rem;
+      }
+      .movie-info h3 {
+        margin: 0;
+      }
+      .container {
+        display: flex;
+        flex-direction: column;
+        max-width: 350px;
+        margin: 1rem 1rem;
+        align-items: center;
+        border-radius: 3px;
+        background-color: whitesmoke;
+        box-shadow: 0 0 1.4px rgb(0, 0, 0.12);
+      }
+      .status span {
+        background-color: black;
+        color: white;
+        border-radius: 10px;
+        padding: 0 4px;
+      }
+      header{
+        background-color: royalblue;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 1rem;
+        margin-bottom: 1rem;
+        
+      }
+      header form input{
+        height: 45px;
+      outline: none;
+      border: none;
+      border-radius: 20px;
+      padding: 0 40px 0 20px;
+      font-size: 16px;
+      box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.1);
+      margin-right: 5px
+      }
+      header button{
+        background-color: transparent;
+      outline: none;
+      border: none;
+      }
+      header form button i{
+        outline: none;
+        border: none;
+        font-size: 1.5rem;
+        cursor: pointer;
+        
+      }
+      form{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .movie-info a{
+        text-decoration: none;
+        color: royalblue;
+      }
+      @media screen {
+        @media (max-width: 991px) {
+          main {
+            flex-wrap: wrap;
+          }
+        }
+      }
+    </style>
+    <header>
+      <h1>Better Reads 📚</h1>
+     <form action=""  method="get" th:attr="action=@{/search}">
+       <input type="text" name="q" id=""  autocomplete="off" placeholder="search by book title">
+       <button><i class="fa-solid fa-magnifying-glass"></i></button>
+     </form>
+    </header>
+    <main>
+      <div class="container" th:each="book : ${books}">
+        <div class="movie">
+          <div class="image">
+            <img
+              th:src="${book.coverUrl}"
+              alt=""
+              srcset=""
+            />
+          </div>
+          <div class="movie-info">
+            <span th:each="rating : ${#numbers.sequence(0,book.rating -1)}">
+              &#9733;</span
+            >
+            <div class="status" th:switch="${book.readingStatus}">
+              <span th:case="'0-reading'">Currently Reading</span>
+              <span th:case="'1-finished'">Done ✔</span>
+              <span th:case="'2-dnf'">Did not finish</span>
+            </div>
+            <a href="" class="text-muted" th:href="@{'/book/'+ ${book.bookId}}"
+              >Read More</a
+            >
+          </div>
+        </div>
+        <h3 th:text="${book.bookName}">Book Title</h3>
+      </div>
+    </main>
+  </body>
 </html>

@@ -17,6 +17,7 @@ public class BookDetails {
     private String title;
     private List<Integer> covers;
     private String key;
+    private String coverUrl;
     
     
 }

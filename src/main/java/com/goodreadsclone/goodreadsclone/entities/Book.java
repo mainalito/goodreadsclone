@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -30,9 +31,15 @@ public class Book implements Serializable{
     @Id
     private String bookId;
 
+    private String bookName;
+   
     private String readingStatus;
     private LocalDate startDate;
     private LocalDate endDate;
     private int rating;
+
+   
+    private String coverUrl;
+    
 
 }
