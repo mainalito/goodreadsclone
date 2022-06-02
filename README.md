@@ -1,5 +1,5 @@
 # BetterReads
-<<<<<<< HEAD
+
 Inspired from goodreads
 =======
 Similar to goodreads
