@@ -2,7 +2,6 @@
 
 Inspired from goodreads
 =======
-Similar to goodreads
 ## An easy way to track the book 📚 
 ### Features
  1. Login with GitHub.
