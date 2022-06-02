@@ -1,23 +1,21 @@
 package com.goodreadsclone.goodreadsclone.controller;
 
-import com.goodreadsclone.goodreadsclone.entities.Book;
-import com.goodreadsclone.goodreadsclone.models.book;
-import com.goodreadsclone.goodreadsclone.models.docs;
-import com.goodreadsclone.goodreadsclone.models.publisher;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.reactive.function.client.ExchangeStrategies;
 import org.springframework.web.reactive.function.client.WebClient;
 
-import reactor.core.publisher.Flux;
-import reactor.core.publisher.Mono;
+import com.goodreadsclone.goodreadsclone.entities.Book;
+import com.goodreadsclone.goodreadsclone.models.book;
+import com.goodreadsclone.goodreadsclone.models.docs;
 
-import java.util.List;
-import java.util.stream.Collectors;
+import reactor.core.publisher.Mono;
 
 @Controller
 
@@ -39,6 +37,7 @@ public class SearchController {
 
     }
 
+  
 
     @GetMapping("/search")
     public String fetchBook(@RequestParam (value = "q", defaultValue = "", required = false) String q, Model model) {

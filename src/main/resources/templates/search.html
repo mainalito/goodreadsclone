@@ -5,9 +5,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Book Tracker</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    
-    
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+      integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
   </head>
   <body>
     <style th:inline="css">
@@ -20,11 +24,11 @@
       body {
         margin: 0;
         font-family: "Poppins", sans-serif;
-
       }
       main {
         display: flex;
         flex-wrap: wrap;
+        margin-left: 4rem;
       }
 
       .movie {
@@ -56,7 +60,7 @@
         background-color: whitesmoke;
         box-shadow: 0 0 1.4px rgb(0, 0, 0.12);
       }
-      .container a{
+      .container a {
         text-decoration: none;
         color: royalblue;
       }
@@ -66,76 +70,97 @@
         border-radius: 10px;
         padding: 0 4px;
       }
-      header{
+      header {
         background-color: royalblue;
         display: flex;
         align-items: center;
         justify-content: space-between;
         padding: 1rem;
         margin-bottom: 1rem;
-        
       }
-      header form input{
+      header a{
+        font-size: 1.6rem;
+        text-decoration: none;
+        color: black;
+        font-weight: 700;
+      }
+      header form input {
         height: 45px;
-      outline: none;
-      border: none;
-      border-radius: 20px;
-      padding: 0 40px 0 20px;
-      font-size: 16px;
-      box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.1);
-      margin-right: 5px
+        outline: none;
+        border: none;
+        border-radius: 20px;
+        padding: 0 40px 0 20px;
+        font-size: 16px;
+        box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.1);
+        margin-right: 5px;
       }
-      header button{
+      header button {
         background-color: transparent;
-      outline: none;
-      border: none;
+        outline: none;
+        border: none;
       }
-      header form button i{
+      header form button i {
         outline: none;
         border: none;
         font-size: 1.5rem;
         cursor: pointer;
-        
       }
-      form{
+      form {
         display: flex;
         align-items: center;
         justify-content: center;
       }
-      .movie-info a{
+      .container a {
         text-decoration: none;
         color: royalblue;
+        font-size: 1.3rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 14px 0;
+        font-weight: 600;
       }
       @media screen {
-        @media (max-width: 991px) {
+        @media (max-width: 768px) {
           main {
             flex-wrap: wrap;
+            margin-left: 4rem;
+          }
+          header {
+            flex-wrap: wrap;
+          }
+          header a {
+            font-size: 1.3rem;
           }
         }
       }
     </style>
     <header>
-      <h1>Better Reads 📚</h1>
-     <form action=""  method="get" th:attr="action=@{/search}">
-       <input type="text" name="q" id=""  autocomplete="off" placeholder="search by book title">
-       <button><i class="fa-solid fa-magnifying-glass"></i></button>
-     </form>
+      <a th:href="@{/}">Better Reads 📚</a>
+      <form action="" method="get" th:attr="action=@{/search}">
+        <input
+          type="text"
+          name="q"
+          id=""
+          autocomplete="off"
+          placeholder="search by book title"
+        />
+        <button><i class="fa-solid fa-magnifying-glass"></i></button>
+      </form>
     </header>
     <main>
       <div class="container" th:each="book : ${books}">
         <div class="movie">
           <div class="image">
-            <img
-              th:src="${book.cover_i}"
-              alt=""
-              srcset=""
-            />
+            <img th:src="${book.cover_i}" alt="" srcset="" />
           </div>
           <div class="movie-info">
-            <h4 th:text="${book.author_name}"  >Book Title</h4>  
+            <h4 th:text="${book.author_name}">Book Title</h4>
           </div>
         </div>
-        <a th:text="${book.title}" th:href="@{'/book/' + ${book.key}}" >Book Title</a>
+        <a th:text="${book.title}" th:href="@{'/book/' + ${book.key}}"
+          >Book Title</a
+        >
       </div>
     </main>
   </body>

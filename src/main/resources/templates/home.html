@@ -5,9 +5,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Book Tracker</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    
-    
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+      integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
   </head>
   <body>
     <style th:inline="css">
@@ -18,33 +22,36 @@
         margin: 0;
       }
       body {
-        margin: 0;
         font-family: "Poppins", sans-serif;
-
       }
       main {
         display: flex;
         flex-wrap: wrap;
+        margin-left: 4rem;
       }
 
       .movie {
-        width: 350px;
+        width: 380px;
       }
       .movie .image img {
         width: 150px;
         height: 200px;
+        object-fit: cover;
       }
       .movie {
         display: flex;
         align-items: center;
         justify-content: center;
       }
+       h3{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 14px 0;
+      }
       .movie-info {
         margin-left: 1rem;
         padding: 1rem;
-      }
-      .movie-info h3 {
-        margin: 0;
       }
       .container {
         display: flex;
@@ -56,79 +63,96 @@
         background-color: whitesmoke;
         box-shadow: 0 0 1.4px rgb(0, 0, 0.12);
       }
+      .status {
+        margin: 14px 0;
+      }
       .status span {
         background-color: black;
         color: white;
         border-radius: 10px;
         padding: 0 4px;
+
+        display: block;
       }
-      header{
+      .movie-info .stars{
+        font-size: 1.5rem;
+        color: royalblue;
+      }
+      header {
         background-color: royalblue;
         display: flex;
         align-items: center;
         justify-content: space-between;
         padding: 1rem;
         margin-bottom: 1rem;
-        
       }
-      header form input{
+      header form input {
         height: 45px;
-      outline: none;
-      border: none;
-      border-radius: 20px;
-      padding: 0 40px 0 20px;
-      font-size: 16px;
-      box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.1);
-      margin-right: 5px
+        outline: none;
+        border: none;
+        border-radius: 20px;
+        padding: 0 40px 0 20px;
+        font-size: 16px;
+        box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.1);
+        margin-right: 5px;
       }
-      header button{
+      header button {
         background-color: transparent;
-      outline: none;
-      border: none;
+        outline: none;
+        border: none;
       }
-      header form button i{
+      header form button i {
         outline: none;
         border: none;
         font-size: 1.5rem;
         cursor: pointer;
-        
       }
-      form{
+      form {
         display: flex;
         align-items: center;
         justify-content: center;
       }
-      .movie-info a{
+      .movie-info a {
         text-decoration: none;
         color: royalblue;
       }
       @media screen {
-        @media (max-width: 991px) {
+        @media (max-width: 768px) {
           main {
             flex-wrap: wrap;
+            margin-left: 4rem ;
           }
+          header{
+            flex-wrap: wrap;
+          }
+          header h1{
+            font-size: 1.3rem;
+          }
+         
         }
       }
     </style>
     <header>
       <h1>Better Reads 📚</h1>
-     <form action=""  method="get" th:attr="action=@{/search}">
-       <input type="text" name="q" id=""  autocomplete="off" placeholder="search by book title">
-       <button><i class="fa-solid fa-magnifying-glass"></i></button>
-     </form>
+      <form action="" method="get" th:attr="action=@{/search}">
+        <input
+          type="text"
+          name="q"
+          id=""
+          autocomplete="off"
+          placeholder="search by book title"
+        />
+        <button><i class="fa-solid fa-magnifying-glass"></i></button>
+      </form>
     </header>
     <main>
       <div class="container" th:each="book : ${books}">
         <div class="movie">
           <div class="image">
-            <img
-              th:src="${book.coverUrl}"
-              alt=""
-              srcset=""
-            />
+            <img th:src="${book.coverUrl}" alt="" srcset="" />
           </div>
           <div class="movie-info">
-            <span th:each="rating : ${#numbers.sequence(0,book.rating -1)}">
+            <span  class="stars" th:each="rating : ${#numbers.sequence(0,book.rating -1)}">
               &#9733;</span
             >
             <div class="status" th:switch="${book.readingStatus}">

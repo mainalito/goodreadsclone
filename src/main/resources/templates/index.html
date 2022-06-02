@@ -1,11 +1,10 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"></html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Live Search</title>
+    <title>Book Tracker Login</title>
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
@@ -13,173 +12,167 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-		integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   </head>
   <body>
-    <h1>Login</h1>
-    <div>With Github: <a href="/oauth2/authorization/github">click here</a></div>
-   <style th:inline="css">
-    @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;1,200&display=swap");
-    * {
-      box-sizing: border-box;
-      font-family: "Poppins", sans-serif;
-      margin: 0;
-      padding: 0;
-    }
-    body {
-      background-color: whitesmoke;
-    }
-    .wrapper {
-      max-width: 600px;
-      margin-right: 20px;
-    }
-    .search-input {
-      padding: 0.5rem 1rem;
-      background-color: white;
-      width: 100%;
-      border-radius: 5px;
-      box-shadow: 0px 1px 5px 3px rgba(0, 0, 0, 0.12);
-    }
-    button {
-      background-color: transparent;
-      outline: none;
-      border: none;
-    }
-    .search-input input {
-      height: 45px;
-      width: 100%;
-      outline: none;
-      border: none;
-      border-radius: 5px;
-      padding: 0 40px 0 20px;
-      font-size: 16px;
-      box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.1);
-    }
-    .search-input.active .autocom-box {
-      padding: 10px 10px;
-      opacity: 1;
-      pointer-events: auto;
-    }
-    .search-input.active .autocom-box li {
-      display: block;
-    }
-    .autocom-box {
-      padding: 0;
-      max-height: 280px;
-      overflow-y: auto;
-      opacity: 0;
-      pointer-events: none;
-    }
-    .autocom-box li {
-      list-style-type: none;
-      padding: 8px 12px;
-      width: 100%;
-      cursor: default;
-      border-radius: 3px;
-      display: none;
-    }
-    .autocom-box li:hover {
-      background-color: #efefef;
-    }
-    .mini {
-      display: flex;
-      align-items: center;
-    }
-    .mini .icon {
-      margin-left: 10px;
-      font-size: 20px;
-      color: #644bff;
-      cursor: pointer;
-    }
-    .search-input.active .autocom-box li .results {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-    .search-input.active .autocom-box li img {
-      width: 75px;
-      height: 100px;
-    }
-    .search-input.active .autocom-box li .results a {
-      text-decoration: none;
-      color: black;
-    }
-  </style>
-  
-    <div class="wrapper">
-      <div class="search-input" method="get" th:attr="action=@{/search}">
-        <form class="mini">
-          <input
-            type="text"
-            name="q"
-            autocomplete="off"
-            placeholder="search a book..."
-            id=""
-          />
-          <button type="submit" class="icon">
-            <i class="fas fa-search"></i>
-          </button>
-        </form>
-        <div class="autocom-box">
-          <!-- <li th:text="${book.title}"></li>
-          <img th:src="${book.cover_i}" alt="" srcset="" /> -->
+    <style th:inline="css">
+      @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;1,200&display=swap");
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        font-family: "Poppins", sans-serif;
+      }
+
+      body {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        background-color: whitesmoke;
+      }
+
+      .container {
+        max-width: 1000px;
+        background-color: white;
+        padding: 2rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+
+      form input {
+        height: 45px;
+        outline: none;
+        border: none;
+        border-radius: 20px;
+        padding: 0 40px 0 20px;
+        font-size: 16px;
+        box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.3);
+        margin-right: 5px;
+      }
+      .loginInfo .separator {
+        height: 1px;
+        width: 100%;
+        margin: 25px 0;
+        background: #ccc;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .separator::before {
+        content: "or";
+        color: #ccc;
+        font-size: 1.5rem;
+        padding: 0 15px;
+        background: #fff;
+      }
+      .loginInfo h1 {
+        color: royalblue;
+        letter-spacing: 0.1rem;
+        border-bottom: 1px solid #bfbfbf;
+        padding: 16px 15px;
+      }
+
+      .loginInfo p {
+        letter-spacing: 0.1rem;
+        margin-top: 1rem;
+      }
+
+      .loginButton {
+        display: flex;
+        align-items: center;
+        padding: 2rem;
+        justify-content: center;
+      }
+
+      .loginButton a {
+        cursor: pointer;
+        border: none;
+        background-color: rgb(230, 227, 227);
+        padding: 1rem;
+        width: 60%;
+        border-radius: 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+      }
+
+      .loginButton a:hover {
+        background-color: whitesmoke;
+      }
+
+      .loginButton a span {
+        color: royalblue;
+        font-size: 1rem;
+        margin-left: 10px;
+        letter-spacing: 0.1rem;
+        font-weight: 700;
+      }
+
+      .loginButton a i {
+        color: black;
+        font-size: 1.6rem;
+      }
+
+      .search {
+        font-weight: 800;
+        font-size: 1.3rem;
+        color: royalblue;
+      }
+
+      form {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 1rem 0;
+      }
+
+      form button {
+        background-color: transparent;
+        outline: none;
+        border: none;
+      }
+
+      form button i {
+        outline: none;
+        border: none;
+        font-size: 1.5rem;
+        cursor: pointer;
+      }
+
+      @media (max-width: 768px) {
+        .loginButton button {
+          width: 100%;
+        }
+      }
+    </style>
+    <div class="container">
+      <div class="loginInfo">
+        <h1>Welcome to BetterReads</h1>
+        <p>
+          Sign in to get personalized features and search for any book in the
+          whole world🌍
+        </p>
+        <div class="loginButton">
+          <a href="/oauth2/authorization/github">
+            <i class="fa-brands fa-github"></i> <span>GitHub Login</span>
+          </a>
         </div>
+        <div class="separator"></div>
       </div>
+      <p class="search">Search for a book</p>
+      <form action="" method="get">
+        <input
+          type="text"
+          name="q"
+          id=""
+          autocomplete="off"
+          placeholder="search by book title"
+        />
+        <button><i class="fa-solid fa-magnifying-glass"></i></button>
+      </form>
     </div>
-    <script type="text/javascript" th:inline="javascript">
-      /*<![CDATA[*/
-      const books = /*[[${books}]]*/ "";
-      console.log(books);
-      const searchWrapper = document.querySelector(".search-input");
-      //   const inputBox = document.querySelector("input");
-      const suggBox = document.querySelector(".autocom-box");
-
-      let bookMap = books.map((book) => {
-        return `
-          <li>
-            <div class="results">
-                <a href="/book/${book.key}" > ${book.title} ${book.author_name} </a>  
-            <img src=${book.cover_i} alt=${book.title} srcset="">
-            </div>
-            </li>
-          `;
-      });
-      console.log(bookMap);
-      searchWrapper.classList.add("active");
-      suggBox.innerHTML = bookMap.join("");
-
-      let allList = suggBox.querySelectorAll("li");
-
-      for (let i = 0; i < allList.length; i++) {
-        allList[i].setAttribute("onclick", "select(this)");
-      }
-      function select(element) {
-        let selectUserData = element.textContent;
-        inputBox.value = selectUserData; //pass the input data to textfield
-      }
-      //capture users data
-      //   inputBox.onkeyup = (e) => {
-      //     let value = e.target.value;
-      //     if (value) {
-      //       fetch("http://localhost:8080/search?query=" + value)
-      //         .then((response) => response.json())
-      //         .then((data) => {
-      //           let userMap = data.map((users) => {
-      //             return `<li>${users.firstName} ${users.lastName}</li>
-      //             `;
-      //           });
-      //           let allList = suggBox.querySelectorAll("li");
-
-      //           for (let i = 0; i < allList.length; i++) {
-      //             allList[i].setAttribute("onclick", "select(this)");
-      //           }
-      //         });
-      //     } else {
-      //       searchWrapper.classList.remove("active");
-      //     }
-      //   };
-      /*]]>*/
-    </script>
   </body>
 </html>
