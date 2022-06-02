@@ -1,2 +1,2 @@
 # BetterReads
-Similar to goodreads
+Inspired from goodreads
