@@ -13,4 +13,3 @@ Inspired from goodreads
 ### ![Login page)](https://user-images.githubusercontent.com/81359755/171620813-42419428-f652-4709-aef0-db2e27b1a05c.png)
 ### ![Home page](https://user-images.githubusercontent.com/81359755/171620927-b42e7fec-f934-4150-ad71-0ebc382e3300.png)
 
->>>>>>> 82c65d6478d4ab447149c166e84545d0e99f00b3
