@@ -24,7 +24,6 @@ public class HomeController {
         if(principal == null  || principal.getAttribute("login") ==null){
             return "index";
         }
-        List<Book> allBooks = bookRepository.findAll();
         Pageable bookPageable = PageRequest.of(0, 10, Sort.by("readingStatus").ascending());
         String userId = principal.getAttribute("login");
         List<Book> booksByUser  = bookRepository.findAllByUserId(userId, bookPageable);

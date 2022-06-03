@@ -163,7 +163,7 @@
         <div class="separator"></div>
       </div>
       <p class="search">Search for a book</p>
-      <form action="" method="get">
+      <form action="" th:attr="action=@{/search}"method="get">
         <input
           type="text"
           name="q"

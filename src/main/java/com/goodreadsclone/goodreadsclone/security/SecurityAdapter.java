@@ -12,16 +12,13 @@ import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 @Configuration
 public class SecurityAdapter extends WebSecurityConfigurerAdapter {
 
-        @Override
-public void configure(WebSecurity web) throws Exception{
-        web.ignoring().antMatchers("style.css","/css/**","/js/**");
-}
+ 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
        // @formatter:off
        http
        .authorizeRequests(a -> a
-           .antMatchers("/","/webjars/**","/book/**")
+           .antMatchers("/","/webjars/**","/search**","/book/**")
            
            .permitAll()
            .anyRequest().authenticated()

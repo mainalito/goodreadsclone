@@ -50,8 +50,12 @@ public class BookController {
             if (bookDetails.getCovers() != null && bookDetails.getCovers().size() > 0) {
                 coverImageUrl = COVER_URL + bookDetails.getCovers().get(0) + "-L.jpg";
             }
-            
+            model.addAttribute("book", bookDetails);
+            model.addAttribute("coverImage", coverImageUrl);
+            if(principal !=null && principal.getAttribute("login") !=null){
+                
                 String userId = principal.getAttribute("login");
+                model.addAttribute("loginId", userId);
                 bookDetails.setCoverUrl(coverImageUrl);
                 System.out.println(userId + "======" + bookId );
                 Optional<Book> userBook = bookRepository.findById(new UserBookIds(bookId,userId));
@@ -60,9 +64,7 @@ public class BookController {
                 } else {
                     model.addAttribute("userBooks", new Book());
                 }
-                model.addAttribute("loginId", principal.getAttribute("login"));
-                model.addAttribute("book", bookDetails);
-                model.addAttribute("coverImage", coverImageUrl);
+            }
             
         }
 
