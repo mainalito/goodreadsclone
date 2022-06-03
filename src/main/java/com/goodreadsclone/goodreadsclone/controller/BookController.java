@@ -69,10 +69,5 @@ public class BookController {
         return "book-details";
 
     }
-    @GetMapping("/dummy")
-	public String getAccounts(Model model){
-		model.addAttribute("dummy",bookRepository.findById
-        (new UserBookIds("OL527464W", "mainalito")).get());
-         return "dummy";
-	}
+   
 }

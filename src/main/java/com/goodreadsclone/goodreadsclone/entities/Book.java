@@ -24,8 +24,6 @@ import lombok.ToString;
 @Table(name = "book_by_user_and_bookid")
 public class Book implements Serializable{
 
-//     @EmbeddedId
-//    private UserBookIds userBookIds;
     @Id
     private String userId;
     @Id

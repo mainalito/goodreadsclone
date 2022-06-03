@@ -48,10 +48,7 @@ public class UserBookController {
         book.setBookName(title);
         book.setCoverUrl(coverUrl);
         System.out.println(coverUrl);
-        
-        
-        
-
+   
         bookRepository.save(book);
         return new ModelAndView("redirect:/book/" + bookId);
     }
