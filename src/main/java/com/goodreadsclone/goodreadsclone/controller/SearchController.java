@@ -61,8 +61,6 @@ public class SearchController {
 
         
         model.addAttribute("books", docsResults);
-        
-        System.out.println(book.getNumFound());
         return "search";
 
     }
