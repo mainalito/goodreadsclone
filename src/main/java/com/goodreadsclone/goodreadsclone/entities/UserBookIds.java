@@ -1,6 +1,7 @@
 package com.goodreadsclone.goodreadsclone.entities;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 import javax.persistence.Embeddable;
 
@@ -15,6 +16,5 @@ public class UserBookIds implements Serializable {
     
     private String bookId;
     private String userId;
-   
-    
+	
 }
