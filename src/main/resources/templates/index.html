@@ -77,6 +77,8 @@
       .loginInfo p {
         letter-spacing: 0.1rem;
         margin-top: 1rem;
+        margin-left: 1rem;
+        text-align: center;
       }
 
       .loginButton {
@@ -143,8 +145,21 @@
       }
 
       @media (max-width: 768px) {
-        .loginButton button {
+        .container {
+          max-width: 380px;
+        }
+       
+        .loginInfo p {
+          padding: 1rem;
+        }
+        form input {
           width: 100%;
+        }
+        .loginButton a {
+          width: 100%;
+        }
+        .loginInfo h1 {
+          font-size: 1.2rem;
         }
       }
     </style>
@@ -153,7 +168,7 @@
         <h1>Welcome to BetterReads</h1>
         <p>
           Sign in to get personalized features and search for any book in the
-          whole world🌍
+          whole world🌍.
         </p>
         <div class="loginButton">
           <a href="/oauth2/authorization/github">
@@ -163,7 +178,7 @@
         <div class="separator"></div>
       </div>
       <p class="search">Search for a book</p>
-      <form action="" th:attr="action=@{/search}"method="get">
+      <form action="" th:attr="action=@{/search}" method="get">
         <input
           type="text"
           name="q"
