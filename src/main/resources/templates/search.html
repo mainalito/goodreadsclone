@@ -156,6 +156,7 @@
           </div>
           <div class="movie-info">
             <h4 th:text="${book.author_name}">Book Title</h4>
+            <h4 th:text="${'Total pages: ' +book.number_of_pages_median}">Total pages</h4>
           </div>
         </div>
         <a th:text="${book.title}" th:href="@{'/book/' + ${book.key}}"

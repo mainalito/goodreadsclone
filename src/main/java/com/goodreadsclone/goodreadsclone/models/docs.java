@@ -14,6 +14,7 @@ public class docs {
     private String title;
     private List<String> author_name;
     private String cover_i;
+    private String number_of_pages_median;
     private String url;
 
 }

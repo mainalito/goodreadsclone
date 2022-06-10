@@ -46,7 +46,7 @@ public class SearchController {
                 .build()).retrieve().bodyToMono(book.class);
         book book = bookMono.block();
 
-        List<docs> docsResults =  book.getDocs().stream().limit(10).peek(bookResult -> {
+        List<docs> docsResults =  book.getDocs().stream().limit(15).peek(bookResult -> {
             bookResult.setKey(bookResult.getKey().replace("/works/", ""));
             String cover_id = bookResult.getCover_i();
             if (StringUtils.hasText(cover_id)) {

@@ -45,6 +45,15 @@
                         <label for="endDate">End Date</label>
                         <input type="date" class="form-control" th:value="${userBooks.endDate}" name="endDate" placeholder="name@example.com">
                       </div>
+                      <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text">Pages Read</span>
+                        </div>
+                        <input type="text" name="pagesRead" class="form-control">
+                        <div class="input-group-append">
+                          <span class="input-group-text"></span>
+                        </div>
+                      </div>
                       <div class="form-group">
                         <label for="readingStatus">Reading Status</label>
                         <select class="form-control" th:field="${userBooks.readingStatus}" name="readingStatus">
