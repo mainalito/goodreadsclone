@@ -35,6 +35,7 @@ public class Book implements Serializable{
     private LocalDate startDate;
     private LocalDate endDate;
     private int rating;
+    private int numberOfPages;
 
    
     private String coverUrl;
