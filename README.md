@@ -1,7 +1,5 @@
 # Readbook-tracker web application
-## Inspired by goodreads website. This is a spring mvc web application
-=======
-## An easy way to track the book 📚 
+## Inspired by goodreads website. This is a spring mvc web application. An easy way to track your books 📚 
 ### Features
  1. Login with GitHub.
  2. Search for any book in the world 🌍
